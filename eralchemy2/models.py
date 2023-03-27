@@ -199,9 +199,10 @@ class Table(Drawable):
 
     RE = re.compile("\[(?P<name>[^]]+)\]")
 
-    def __init__(self, name: str, columns: list[Column]) -> None:
+    def __init__(self, name: str, columns: list[Column], group: str = None) -> None:
         self.name = name
         self.columns = columns
+        self.group = group
 
     @staticmethod
     def make_from_match(match: re.Match) -> Table:

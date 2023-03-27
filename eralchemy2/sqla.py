@@ -55,12 +55,13 @@ def column_to_intermediary(
     )
 
 
-def table_to_intermediary(table: sa.Table) -> Table:
+def table_to_intermediary(table: sa.Table, group: str = None) -> Table:
     """Transform an SQLAlchemy Table object to it's intermediary representation."""
     table_columns = getattr(table.c, "_colset", getattr(table.c, "_data", {}).values())
     return Table(
         name=table.fullname,
         columns=[column_to_intermediary(col) for col in table_columns],
+        group=group,
     )
 
 
